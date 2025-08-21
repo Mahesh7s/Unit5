@@ -1,1 +1,44 @@
 hi
+const mongoose = require("mongoose");
+const express = require("express");
+const connectToDB = require("./config/db");
+const app = express();
+app.use(express.json());
+connectToDB()
+
+app.get("/test",(req,res)=>{
+	res.status(200).json({message:"App is teking"});
+
+})
+app.use((req,res)=>{
+	res.status(404).json({Error:"Route is not defined!!1"});
+})
+
+app.listen(7000,()=>{
+	console.log("App is working on the route 7000")
+})
+
+
+
+
+//db.js
+const mongoose = require("mongoose");
+
+const connectToDB = async()=>{
+	try{
+		await mongoose.connect("mongodb://127.0.0.1:27017/userComplex")
+		console.log("Connected to userComplex database");
+	}
+	catch(err){
+		console.log("Something error in database connection",err);
+	}
+}
+
+
+
+
+module.exports = connectToDB;
+
+
+
+GAPP PASSWORD : "ulje xvbn pqsr ltoo";
